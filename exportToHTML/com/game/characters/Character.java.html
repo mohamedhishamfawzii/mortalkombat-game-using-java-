@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Character.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(128,128,128); font-style: italic; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s5 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Character.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.game.characters; 
+ 
+</span><span class="s0">import </span><span class="s1">com.game.powers.Powers; 
+ 
+</span><span class="s0">import </span><span class="s1">javax.swing.*; 
+</span><span class="s0">import </span><span class="s1">java.awt.*; 
+</span><span class="s0">import </span><span class="s1">java.awt.event.KeyEvent; 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.Vector; 
+ 
+</span><span class="s0">public abstract class </span><span class="s1">Character </span><span class="s0">implements </span><span class="s1">Characterizable { 
+    </span><span class="s0">protected int </span><span class="s1">health; 
+    </span><span class="s0">protected </span><span class="s1">ArrayList&lt;Powers&gt; power; 
+    </span><span class="s0">protected int </span><span class="s1">xp; 
+    </span><span class="s0">protected </span><span class="s1">ImageIcon icon; 
+    </span><span class="s0">private static </span><span class="s1">Vector&lt;String&gt; characters = </span><span class="s0">new </span><span class="s1">Vector&lt;String&gt;(); 
+    </span><span class="s0">private int </span><span class="s1">x,dx; 
+    </span><span class="s0">private int </span><span class="s1">y=</span><span class="s2">200</span><span class="s1">; 
+ 
+ 
+    </span><span class="s0">protected </span><span class="s1">Image charimg; 
+    </span><span class="s0">protected </span><span class="s1">String imgname; 
+ 
+ 
+    </span><span class="s0">public </span><span class="s1">Character(</span><span class="s0">int </span><span class="s1">health, ArrayList&lt;Powers&gt; power, </span><span class="s0">int </span><span class="s1">xp, ImageIcon icon) { 
+        </span><span class="s0">this</span><span class="s1">.health = health; 
+        </span><span class="s0">this</span><span class="s1">.power = power; 
+        </span><span class="s0">this</span><span class="s1">.xp = xp; 
+        </span><span class="s0">this</span><span class="s1">.icon = icon; 
+        loadImage(); 
+        x=</span><span class="s2">60</span><span class="s1">; 
+    } 
+ 
+</span><span class="s3">/*    public void keyPressed(KeyEvent e){ 
+        int key = e.getKeyCode(); 
+        if(key==KeyEvent.VK_LEFT){ 
+            dx=-1; 
+        } 
+        if(key==KeyEvent.VK_RIGHT){ 
+            dx=1; 
+        } 
+ 
+    } 
+    public void keyReleased(KeyEvent e){ 
+        int key = e.getKeyCode(); 
+        if(key==KeyEvent.VK_LEFT){ 
+            dx=0; 
+        } 
+        if(key==KeyEvent.VK_RIGHT){ 
+            dx=0; 
+        } 
+    }*/</span><span class="s1"> 
+ 
+    </span><span class="s0">public int </span><span class="s1">getX(){ 
+        </span><span class="s0">return </span><span class="s1">x; 
+    } 
+    </span><span class="s0">public int </span><span class="s1">getY(){ 
+        </span><span class="s0">return </span><span class="s1">y; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">move(){ 
+        x+=dx; 
+    } 
+ 
+    </span><span class="s3">/** 
+     * this function set array of vectors by the names of available character 
+     * 
+     * </span><span class="s4">@return </span><span class="s3">Vector String 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static </span><span class="s1">Vector&lt;String&gt; getCharacters() { 
+        characters.add(</span><span class="s5">&quot;Sub Zero&quot;</span><span class="s1">); 
+        characters.add(</span><span class="s5">&quot;Scorpion&quot;</span><span class="s1">); 
+        characters.add(</span><span class="s5">&quot;Rose&quot;</span><span class="s1">); 
+        characters.add(</span><span class="s5">&quot;Retsuu&quot;</span><span class="s1">); 
+        characters.add(</span><span class="s5">&quot;Akuma&quot;</span><span class="s1">); 
+ 
+        </span><span class="s0">return </span><span class="s1">characters; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">loadImage(){ 
+        ImageIcon im = </span><span class="s0">new </span><span class="s1">ImageIcon(getClass().getName()); 
+        charimg = im.getImage(); 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">getHealth() { 
+        </span><span class="s0">return </span><span class="s1">health; 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">getXp() { 
+        </span><span class="s0">return </span><span class="s1">xp; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">ImageIcon getIcon() { 
+        </span><span class="s0">return </span><span class="s1">icon; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Image getImg() { 
+        </span><span class="s0">return </span><span class="s1">charimg; 
+    } 
+} 
+</span></pre>
+</body>
+</html>
